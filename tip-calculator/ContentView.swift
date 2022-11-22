@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var total = ""
+    @State var total = "100"
     @State var tipPercent = 15.0
     var body: some View {
         VStack {
@@ -28,13 +28,16 @@ struct ContentView: View {
                 TextField("Amount", text:$total)
             }
             HStack{
-                Slider(value: $tipPercent)
+                Slider(value: $tipPercent, in: 1...30, step: 1.0)
                 Text("\(Int(tipPercent))")
                 Text("%")
                 
             }
-            Text("Tip Amount: $")
-            
+            if let totalNumber = Double(total){
+                Text("Tip Amount: $\(totalNumber * tipPercent / 100, specifier: "%0.2f")")
+            } else {
+                Text("Please enter a numeric number")
+            }
         }
         .padding()
     }
