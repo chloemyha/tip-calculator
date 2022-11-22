@@ -8,12 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var total = ""
+    @State var tipPercent = 15.0
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            HStack{
+                Image(systemName: "dollarsign.circle.fill")
+                
+                    .imageScale(.large)
+                    .foregroundColor(.accentColor)
+                    .font(.title)
+                Text("Tip Calculator")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                
+            }
+            HStack{
+                Text("$")
+                TextField("Amount", text:$total)
+            }
+            HStack{
+                Slider(value: $tipPercent)
+                Text("\(Int(tipPercent))")
+                Text("%")
+                
+            }
+            Text("Tip Amount: $")
+            
         }
         .padding()
     }
